@@ -28,18 +28,41 @@ public class FXMLController {
 
     @FXML
     private TextArea txtResult;
+    
+    @FXML
+    private TextField txtTimer;
 
     @FXML
     private Button btnReset;
+    
+    @FXML
+    private Button btnCancella;
+
+    @FXML
+    void doCancella(ActionEvent event) {
+    	double inizio = System.nanoTime();
+    	elenco.deleteParola(txtParola.getText());
+    	double fine = System.nanoTime() - inizio;
+    	txtTimer.setText(String.format("%f", fine));
+    }
 
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
+    	double inizio = System.nanoTime();
+    	elenco.addParola(txtParola.getText());
+    	elenco.getElenco();
+    	double fine = System.nanoTime() - inizio;
+    	txtTimer.setText(String.format("%f", fine));
     }
 
     @FXML
     void doReset(ActionEvent event) {
     	// TODO
+    	double inizio = System.nanoTime();
+    	elenco.reset();
+    	double fine = System.nanoTime() - inizio;
+    	txtTimer.setText(String.format("%f", fine));
     }
 
     @FXML
