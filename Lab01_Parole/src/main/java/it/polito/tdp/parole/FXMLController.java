@@ -3,6 +3,7 @@ package it.polito.tdp.parole;
 import it.polito.tdp.parole.model.Parole;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,12 @@ public class FXMLController {
     void doCancella(ActionEvent event) {
     	double inizio = System.nanoTime();
     	elenco.deleteParola(txtParola.getText());
+    	txtResult.clear();
+    	String area = "";
+    	for (String p : elenco.getElenco()) {
+    		area += p + "\n";
+		}
+		txtResult.setText(area);
     	double fine = System.nanoTime() - inizio;
     	txtTimer.setText(String.format("%f", fine));
     }
@@ -50,8 +57,13 @@ public class FXMLController {
     void doInsert(ActionEvent event) {
     	// TODO
     	double inizio = System.nanoTime();
+    	txtResult.clear();
     	elenco.addParola(txtParola.getText());
-    	elenco.getElenco();
+    	String area = "";
+    	for (String p : elenco.getElenco()) {
+    		area += p + "\n";
+		}
+		txtResult.setText(area);
     	double fine = System.nanoTime() - inizio;
     	txtTimer.setText(String.format("%f", fine));
     }
@@ -61,6 +73,7 @@ public class FXMLController {
     	// TODO
     	double inizio = System.nanoTime();
     	elenco.reset();
+    	txtResult.clear();
     	double fine = System.nanoTime() - inizio;
     	txtTimer.setText(String.format("%f", fine));
     }
